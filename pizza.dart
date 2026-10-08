@@ -1,33 +1,47 @@
 import 'dart:io';
 
 void main() {
-  print('======================================================');
-  print('Pizza Price: "Small: 5 USD, Medium: 7 USD, Large: 10 USD"');
+  while (true) {
+    print('Pizza Price: Small = 5 USD');
+    print('             Medium = 7 USD');
+    print('             Large = 10 USD');
 
-  stdout.write('Please enter your pizza size (small, medium, or large): ');
-  String pizzaSize = stdin.readLineSync()!.toLowerCase();
+    stdout.write('Please enter your pizza size (small, medium, or large): ');
+    String pizzaSize = stdin.readLineSync()!.toLowerCase();
 
-  int price;
+    stdout.write('How many pizzas do you want? ');
+    int quantity = int.parse(stdin.readLineSync()!);
 
-  switch (pizzaSize) {
-    case 'small':
-      price = 5;
+    int price = 0;
+
+    switch (pizzaSize) {
+      case 'small':
+        price = 5;
+        break;
+
+      case 'medium':
+        price = 7;
+        break;
+
+      case 'large':
+        price = 10;
+        break;
+
+      default:
+        print('Invalid pizza size!');
+        continue;
+    }
+
+    int totalPayment = price * quantity;
+
+    print('Your Total Payment is: \$$totalPayment');
+
+    stdout.write('Do you want to order again? (yes/no): ');
+    String again = stdin.readLineSync()!.toLowerCase();
+
+    if (again == 'no') {
+      print('Thank you for your order!');
       break;
-    case 'medium':
-      price = 7;
-      break;
-    case 'large':
-      price = 10;
-      break;
-    default:
-      print('Invalid pizza size.');
-      return;
+    }
   }
-
-  stdout.write('How many pizzas do you want of $pizzaSize? ');
-  int quantity = int.parse(stdin.readLineSync()!);
-
-  int totalPayment = price * quantity;
-
-  print('Your Total Payment is: \$$totalPayment');
 }
